@@ -9,6 +9,7 @@
 #include <condition_variable>
 #include <future>
 #include <functional>
+#include <atomic>
 #include <stdexcept>
 
 class ThreadPool {
@@ -27,7 +28,7 @@ private:
     // synchronization
     std::mutex queue_mutex;
     std::condition_variable condition;
-    bool stop;
+    std::atomic_bool stop;
 };
  
 // the constructor just launches some amount of workers
